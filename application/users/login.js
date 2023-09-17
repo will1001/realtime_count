@@ -37,7 +37,6 @@ module.exports =
       if (!findUser.api_gateway_key || !findUser.api_gateway_secret) {
         const response = {
           name: findUser.nama,
-          phone: findUser.phone,
           email: findUser.email,
         };
         throw new Joi.ValidationError("Old User", null, response);
@@ -55,7 +54,6 @@ module.exports =
       if (!findUser.api_gateway_key || !findUser.api_gateway_secret) {
         const response = {
           name: findUser.nama,
-          phone: findUser.phone,
           email: findUser.email,
         };
         throw new Joi.ValidationError("Old User", null, response);

@@ -10,6 +10,11 @@ const auth = async (req, res, next) => {
       message: "Unauthorized",
     });
   }
+
+  let rolse = headers["x-consumer-groups"]
+    ? headers["x-consumer-groups"].replace(/\s/g, "").split(",")
+    : [];
+
   const user = {
     id: headers["x-consumer-custom-id"] ?? null,
     authorization: headers.authorization ?? null,
@@ -17,10 +22,27 @@ const auth = async (req, res, next) => {
     roles: headers["x-consumer-groups"]
       ? headers["x-consumer-groups"].replace(/\s/g, "").split(",")
       : [],
+    role: getSuperRole(rolse),
     roles_allow: [],
   };
   console.log(user);
   req.auth = user;
 };
+
+const getSuperRole = (rolse) => {
+  if (rolse.includes('admin')) {
+    return 'admin'
+  }
+
+  if (rolse.includes('kjsb')) {
+    return 'kjsb'
+  }
+
+  if (rolse.includes('surveyor')) {
+    return 'surveyor'
+  }
+
+  return 'users'
+}
 
 module.exports = auth;
