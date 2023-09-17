@@ -1,0 +1,20 @@
+version: "2"
+services:
+    realcount-service:
+        build: .
+        image: realcount/app
+        container_name: realcount-app
+        volumes:
+            - ../../../var/www/html:/opt/app/uploads
+        env_file:
+            - ./.env
+        ports:
+            - "${APP_PORT}:${APP_PORT}"
+        restart: always
+        networks:
+            - sjp_net
+
+networks:
+  sjp_net:
+    name : sjp_net
+    driver: bridge
