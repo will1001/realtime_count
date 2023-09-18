@@ -6,6 +6,7 @@ const multipart = require("@fastify/multipart");
 const { RABBITMQ_HOST } = process.env;
 const fastifyCron = require("fastify-cron");
 const CronJobs = require("../../ports/cron/CronJobs");
+const cors = require("@fastify/cors");
 
 module.exports = ({ routes, LoggerConfig }) => {
   const server = fastify({
@@ -43,10 +44,15 @@ module.exports = ({ routes, LoggerConfig }) => {
       {
         cronTime: "0 * * * *", // Everyday at midnight UTC
         onTick: async (server) => {
-          await CronJobs.BackupData();
+          // await CronJobs.BackupData();
         },
       },
     ],
+  });
+
+  server.register(cors, {
+    origin: true, // Allow all origins
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   });
 
   server.get("/invoice", (req, res) => {

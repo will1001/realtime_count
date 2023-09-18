@@ -15,6 +15,8 @@ const userMongo = ({
   kabupatenSchema,
   kecamatanSchema,
   kelurahanSchema,
+  categorySchema,
+  subCategorySchema,
 }) => ({
   lookupEmail: async (email) => {
     const user = await userSchema.findOne({
@@ -158,6 +160,17 @@ const userMongo = ({
       roles: roles,
       id_kabupaten: user.id_kabupaten,
     };
+  },
+  getCategory: async (req) => {
+    const data = await categorySchema.find();
+
+    return { data };
+  },
+  getSubCategory: async (req) => {
+    const { id_category } = req.params;
+    const data = await subCategorySchema.find({ category_id: id_category });
+
+    return { data };
   },
 });
 

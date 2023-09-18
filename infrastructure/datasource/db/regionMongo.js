@@ -13,16 +13,13 @@ const regionMongo = ({
   getKabupaten: async (req) => {
     const { query } = req;
     let filters = {};
-    // if (query.filter) {
-    //   filters.id = {
-    //     $in: [query.filter],
-    //   };
-    // }
+    if (query.id) {
+      filters._id = {
+        $in: [query.id],
+      };
+    }
     try {
-      const data = await kabupatenSchema.find({
-        _id: { $in: ["5201", "5202", "5203", "5208", "5271"] },
-      });
-      console.log(data);
+      const data = await kabupatenSchema.find(filters);
 
       return { data };
     } catch (err) {

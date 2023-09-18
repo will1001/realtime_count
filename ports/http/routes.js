@@ -1,12 +1,9 @@
 const { auth, role, xendit_callback } = require("../middleware/index");
 
-module.exports = ({
-  UserController,
-  RegionController,
-}) => [
+module.exports = ({ UserController, RegionController }) => [
   {
     method: "GET",
-    path: "/",
+    path: "/hello",
     handler: UserController.hello,
   },
   {
@@ -38,5 +35,15 @@ module.exports = ({
     method: "GET",
     path: "/kelurahans",
     handler: RegionController.getKelurahans,
+  },
+  {
+    method: "GET",
+    path: "/category",
+    handler: UserController.getCategory,
+  },
+  {
+    method: "GET",
+    path: "/sub_category/:id_category",
+    handler: UserController.getSubCategory,
   },
 ];

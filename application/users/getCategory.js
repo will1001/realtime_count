@@ -1,7 +1,7 @@
 const Joi = require("joi");
 
 module.exports =
-  ({ regionRepository, JoiError: errorID }) =>
+  ({ userRepository, JoiError: errorID }) =>
   async (req) => {
     const { query } = req;
 
@@ -11,5 +11,5 @@ module.exports =
 
     let { error } = await validate.validateAsync(query, errorID);
     if (error) throw new Joi.ValidationError(error);
-    return regionRepository.getKabupaten(req);
+    return userRepository.getCategory(req);
   };

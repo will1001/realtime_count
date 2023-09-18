@@ -14,6 +14,8 @@ const pemilihSchema = new Schema(
     id_kelurahan: { type: Number, optional: true },
     id_category: { type: Number, optional: true },
     id_sub_category: { type: Number, optional: true },
+    id_upa: { type: Number, optional: true },
+    id_bcad: { type: Number, optional: true },
   },
   {
     versionKey: false,
