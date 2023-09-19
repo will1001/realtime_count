@@ -6,7 +6,6 @@ const multipart = require("@fastify/multipart");
 const { RABBITMQ_HOST } = process.env;
 const fastifyCron = require("fastify-cron");
 const CronJobs = require("../../ports/cron/CronJobs");
-const cors = require("@fastify/cors");
 
 module.exports = ({ routes, LoggerConfig }) => {
   const server = fastify({
@@ -48,11 +47,6 @@ module.exports = ({ routes, LoggerConfig }) => {
         },
       },
     ],
-  });
-
-  server.register(cors, {
-    origin: true, // Allow all origins
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   });
 
   server.get("/invoice", (req, res) => {

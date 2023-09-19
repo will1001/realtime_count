@@ -46,4 +46,9 @@ module.exports = ({ UserController, RegionController }) => [
     path: "/sub_category/:id_category",
     handler: UserController.getSubCategory,
   },
+  {
+    method: "GET",
+    path: "/dapil",
+    handler: UserController.getDapil,
+  },
 ];

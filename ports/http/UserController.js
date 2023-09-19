@@ -90,6 +90,24 @@ const UserController = (container) => ({
       }
     }
   },
+  getDapil: async (req, res) => {
+    const { getDapil } = container;
+    try {
+      const response = await getDapil(req);
+      res.status(200).send(response);
+    } catch (err) {
+      console.log(err);
+      if (err instanceof ValidationError) {
+        res.status(400).send({
+          message: err.message,
+        });
+      } else {
+        res.status(500).send({
+          message: err.message,
+        });
+      }
+    }
+  },
 });
 
 module.exports = UserController;

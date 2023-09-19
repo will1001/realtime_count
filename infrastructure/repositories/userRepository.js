@@ -19,6 +19,9 @@ const userRepository = ({ userMongo, UserApiGateway }) => ({
   getSubCategory: async (req) => {
     return await userMongo.getSubCategory(req);
   },
+  getDapil: async (req) => {
+    return await userMongo.getDapil(req);
+  },
 });
 
 module.exports = userRepository;

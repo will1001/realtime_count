@@ -14,7 +14,7 @@ const userMongo = ({
   userSchema,
   kabupatenSchema,
   kecamatanSchema,
-  kelurahanSchema,
+  dapilSchema,
   categorySchema,
   subCategorySchema,
 }) => ({
@@ -169,6 +169,11 @@ const userMongo = ({
   getSubCategory: async (req) => {
     const { id_category } = req.params;
     const data = await subCategorySchema.find({ category_id: id_category });
+
+    return { data };
+  },
+  getDapil: async (req) => {
+    const data = await dapilSchema.find();
 
     return { data };
   },

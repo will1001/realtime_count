@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/rasouza/node-clean-architecture#readme",
   "dependencies": {
-    "@fastify/cors": "^8.3.0",
     "@fastify/multipart": "^7.3.0",
     "@fastify/static": "^6.5.0",
     "amqplib": "^0.10.3",
