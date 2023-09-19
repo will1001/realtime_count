@@ -178,13 +178,25 @@ const userMongo = ({
     return { data };
   },
   postTarget: async ({ body }) => {
-    const _id = uuidv4();
-    const data = new targetSuaraSchema({
-      _id,
-      ...body,
-    });
+    const { id_dapil } = body;
+    const target = await targetSuaraSchema.findOne({ id_dapil });
 
-    await data.save();
+    if (target) {
+      await targetSuaraSchema.updateOne(
+        {
+          id_dapil: Number(id_dapil),
+        },
+        { ...body }
+      );
+    } else {
+      const _id = uuidv4();
+      const data = new targetSuaraSchema({
+        _id,
+        ...body,
+      });
+
+      await data.save();
+    }
   },
 });
 
