@@ -51,4 +51,9 @@ module.exports = ({ UserController, RegionController }) => [
     path: "/dapil",
     handler: UserController.getDapil,
   },
+  {
+    method: "POST",
+    path: "/target",
+    handler: UserController.postTarget,
+  },
 ];

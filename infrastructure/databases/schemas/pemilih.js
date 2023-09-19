@@ -15,6 +15,7 @@ const pemilihSchema = new Schema(
     id_category: { type: Number, optional: true },
     id_sub_category: { type: Number, optional: true },
     id_upa: { type: Number, optional: true },
+    id_dpr_level: { type: Number, optional: true },
   },
   {
     versionKey: false,

@@ -13,7 +13,7 @@ const { hashPassword } = require("../../../lib/bcrypt");
 const userMongo = ({
   userSchema,
   kabupatenSchema,
-  kecamatanSchema,
+  targetSuaraSchema,
   dapilSchema,
   categorySchema,
   subCategorySchema,
@@ -176,6 +176,15 @@ const userMongo = ({
     const data = await dapilSchema.find();
 
     return { data };
+  },
+  postTarget: async ({ body }) => {
+    const _id = uuidv4();
+    const data = new targetSuaraSchema({
+      _id,
+      ...body,
+    });
+
+    await data.save();
   },
 });
 
