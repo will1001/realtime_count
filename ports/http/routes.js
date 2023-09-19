@@ -56,4 +56,9 @@ module.exports = ({ UserController, RegionController }) => [
     path: "/target",
     handler: UserController.postTarget,
   },
+  {
+    method: "get",
+    path: "/target",
+    handler: UserController.getTarget,
+  },
 ];

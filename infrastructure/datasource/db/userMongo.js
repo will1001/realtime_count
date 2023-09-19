@@ -198,6 +198,24 @@ const userMongo = ({
       await data.save();
     }
   },
+  getTarget: async () => {
+    return await targetSuaraSchema.aggregate([
+      {
+        $lookup: {
+          from: "dapils",
+          localField: "id_dapil",
+          foreignField: "_id",
+          as: "dapil",
+        },
+      },
+      {
+        $unwind: {
+          path: "$dapil",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+    ]);
+  },
 });
 
 module.exports = userMongo;
